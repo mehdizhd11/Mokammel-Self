@@ -6,6 +6,8 @@ from telebot import *
 
 from persiantools import digits
 
+import threading
+
 schedule.every().day.at('00:30').do(clearList)
 
 while True:
@@ -41,7 +43,7 @@ while True:
             if message.text == 'فروش کد سلف مکمل':
                 
                 studentId = bot.reply_to(message, 'شماره دانشجویی خود را وارد کنید :')
-
+                
                 bot.register_next_step_handler(studentId, seller_studentId)
 
             elif message.text == 'خرید کد سلف مکمل':
@@ -182,7 +184,7 @@ while True:
                 bot.send_message(idNumberText.chat.id , 'خطا ! اطلاعات وارد شده و موجودی حساب خود را چک کنید و دوباره وارد شوید')
                 
                 return
-
+            
         bot.polling(non_stop=True)
 
     except:
